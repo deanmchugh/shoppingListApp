@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 interface HeaderText {
-    title: string
+    title?: string
 }
 
 const Header = ({title = 'Shopping List'}: HeaderText) => {

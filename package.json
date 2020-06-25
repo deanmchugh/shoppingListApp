@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@types/react-native-vector-icons": "^6.4.5",
     "expo": "~37.0.3",
     "expo-asset": "~8.1.5",
     "react": "~16.9.0",
