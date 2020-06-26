@@ -13,9 +13,9 @@ const ListItem = ({listItem, deleteItem}: Props) => {
         <View style={styles.listItemView}>
             <Text style={styles.listItemText}>{listItem.text}</Text>
             <AntDesign 
-                name="closecircle" 
+                name='closecircle'
                 size={24} 
-                color="firebrick"
+                color='red'
                 onPress={() => deleteItem(listItem.id)} 
             />
         </View>

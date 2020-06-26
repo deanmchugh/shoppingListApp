@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, View, FlatList, Alert } from 'react-native'
 import Header from './components/Header'
 import ListItem from './components/ListItem'
+import AddItem from './components/AddItem'
 
 const App = () => {
   const [items, setItems] = useState([
@@ -17,13 +18,21 @@ const App = () => {
     })
   }
 
+  const addItem = (text: string) => {
+    if (!text) Alert.alert('Errror', 'Please enter item name')
+    else setItems(prevItems => {
+      return [{id: prevItems.length + 1, text}, ...prevItems]
+    })
+  }
+
   return (
     <View style={styles.container}>
       <Header />
+      <AddItem addItem={addItem} />
       <FlatList 
         data={items} 
         renderItem={({item}) => 
-          <ListItem listItem={item} deleteItem={deleteItem}/>}
+          <ListItem listItem={item} deleteItem={deleteItem} />}
       />
     </View>
   )
