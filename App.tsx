@@ -6,7 +6,7 @@ import ListItem from './components/ListItem'
 import AddItem from './components/AddItem'
 
 const App = () => {
-  const [isAdd, setIsAdd] = useState(true)
+  const [isAdd, setIsAdd] = useState(false)
   const [items, setItems] = useState([
     {id: uuid.v1(), text: 'Milk'}
   ])
@@ -17,7 +17,11 @@ const App = () => {
 
   const addItem = (text: string) => {
     if (!text) Alert.alert('Error', 'Please enter item name')
-    else setItems(prevItems => [{id: uuid.v1(), text}, ...prevItems])
+    else if (text === 'cancel') setIsAdd(false)
+    else {
+      setItems(prevItems => [{id: uuid.v1(), text}, ...prevItems])
+      setIsAdd(false)
+    }
   }
 
   return (
