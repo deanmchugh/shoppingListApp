@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; 
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {AntDesign} from '@expo/vector-icons'; 
 
 interface Props {
-    listItem: {text: string, id: number},
-    deleteItem: (id: number) => void
+    listItem: {id: string, text: string},
+    deleteItem: (id: string) => void
 }
 
 const ListItem = ({listItem, deleteItem}: Props) => {

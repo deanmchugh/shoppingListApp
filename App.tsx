@@ -1,34 +1,36 @@
 import React, {useState} from 'react'
-import { StyleSheet, View, FlatList, Alert } from 'react-native'
+import {StyleSheet, View, FlatList, Alert, Button} from 'react-native'
+import uuid from 'react-native-uuid'
 import Header from './components/Header'
 import ListItem from './components/ListItem'
 import AddItem from './components/AddItem'
 
 const App = () => {
+  const [isAdd, setIsAdd] = useState(true)
   const [items, setItems] = useState([
-    {id: 1, text: 'Milk'},
-    {id: 2, text: 'Bread'},
-    {id: 3, text: 'Apple'},
-    {id: 4, text: 'Soap'},
+    {id: uuid.v1(), text: 'Milk'}
   ])
 
-  const deleteItem = (id: number) => {
-    setItems(prevItems => {
-      return prevItems.filter(item => item.id != id)
-    })
+  const deleteItem = (id: string) => {
+    setItems(prevItems => prevItems.filter(item => item.id != id))
   }
 
   const addItem = (text: string) => {
-    if (!text) Alert.alert('Errror', 'Please enter item name')
-    else setItems(prevItems => {
-      return [{id: prevItems.length + 1, text}, ...prevItems]
-    })
+    if (!text) Alert.alert('Error', 'Please enter item name')
+    else setItems(prevItems => [{id: uuid.v1(), text}, ...prevItems])
   }
 
   return (
     <View style={styles.container}>
       <Header />
-      <AddItem addItem={addItem} />
+      <Button 
+        title='Add New Item' 
+        onPress={() => setIsAdd(true)}   
+      />
+      <AddItem 
+        addItem={addItem} 
+        visable={isAdd}
+      />
       <FlatList 
         data={items} 
         renderItem={({item}) => 
